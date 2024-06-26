@@ -1,4 +1,5 @@
-import { Box, Heading, Text, VStack, Image } from "@chakra-ui/react";
+import { Box, Heading, Text, VStack, Image, Button, HStack } from "@chakra-ui/react";
+import { FaThumbsUp } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const Profile = () => {
@@ -21,6 +22,12 @@ const Profile = () => {
 
     fetchPhotos();
   }, []);
+  const handleLike = (index) => {
+    const updatedPhotos = [...photos];
+    updatedPhotos[index].likes = (updatedPhotos[index].likes || 0) + 1;
+    setPhotos(updatedPhotos);
+  };
+
   return (
     <Box p={4}>
       <VStack spacing={4} align="center">
@@ -30,7 +37,15 @@ const Profile = () => {
         <Text fontSize="md">Bio: A short bio about the user.</Text>
         {photos.length > 0 ? (
           photos.map((photo, index) => (
-            <Image key={index} src={photo.url} alt={`Photo ${index}`} boxSize="200px" />
+            <Box key={index}>
+              <Image src={photo.url} alt={`Photo ${index}`} boxSize="200px" />
+              <HStack spacing={2}>
+                <Button leftIcon={<FaThumbsUp />} onClick={() => handleLike(index)}>
+                  Like
+                </Button>
+                <Text>{photo.likes || 0} Likes</Text>
+              </HStack>
+            </Box>
           ))
         ) : (
           <Text>No photos available</Text>
