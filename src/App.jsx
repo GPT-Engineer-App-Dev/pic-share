@@ -3,6 +3,7 @@ import Index from "./pages/Index.jsx";
 import Profile from "./pages/Profile.jsx";
 import Upload from "./pages/Upload.jsx";
 import Navbar from "./components/Navbar.jsx";
+import Feed from "./pages/Feed.jsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route exact path="/" element={<Index />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/upload" element={<Upload />} />
+        <Route exact path="/feed" element={<Feed />} />
       </Routes>
     </Router>
   );
