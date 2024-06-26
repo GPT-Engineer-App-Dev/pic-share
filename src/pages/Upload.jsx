@@ -15,7 +15,7 @@ const Upload = () => {
     reader.readAsDataURL(selectedFile);
   };
 
-  const handleUpload = () => {
+  const handleUpload = async () => {
     if (!file) return;
     const formData = new FormData();
     formData.append("file", file);
